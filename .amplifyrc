@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "sc2eventswebsite-20190210151322-authRole",
+            "UnauthRoleArn": "arn:aws:iam::082604792641:role/sc2eventswebsite-20190210151322-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::082604792641:role/sc2eventswebsite-20190210151322-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "sc2eventswebsite-20190210151322-deployment",
+            "UnauthRoleName": "sc2eventswebsite-20190210151322-unauthRole",
+            "StackName": "sc2eventswebsite-20190210151322",
+            "StackId": "arn:aws:cloudformation:us-west-2:082604792641:stack/sc2eventswebsite-20190210151322/1460cc70-2d81-11e9-a920-027a46c6b5a2"
+        }
+    }
+}

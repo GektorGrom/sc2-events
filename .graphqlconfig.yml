@@ -1,0 +1,17 @@
+projects:
+  SC2 Events:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        graphQLApiId: hdctzvx3vzhl7evgpqo3x3xe3y
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-west-2
+      endpoints:
+        prod: >-
+          https://yryxqaqwuvalphwuesf2mx555u.appsync-api.us-west-2.amazonaws.com/graphql

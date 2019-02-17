@@ -1,0 +1,21 @@
+.event-item {
+  &__voteBtn {
+    &-up {
+      &:disabled {
+        cursor: not-allowed;
+        svg {
+          fill: #3a7e80;
+        }
+      }
+    }
+    &-down {
+      &:disabled {
+        cursor: not-allowed;
+        svg {
+          fill: rgba(255, 102, 124, 0.72);
+        }
+      }
+    }
+
+  }
+}
