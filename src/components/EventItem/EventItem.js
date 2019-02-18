@@ -11,6 +11,8 @@ import { updateSc2Events } from '../../graphql/mutations';
 import './EventItem.scss';
 import { cdmEvent } from '../../hooks/eventHooks';
 
+const now = new Date().getTime();
+
 const EventItem = ({
   stage, title, up, down, id, AWSTimestamp, db,
 }) => {
@@ -22,11 +24,14 @@ const EventItem = ({
     <Connect mutation={graphqlOperation(updateSc2Events)}>
       {({ mutation }) => (
         <div className="flex mb-4 leading-loose event-item">
-          <div className="w-3/5 text-left">
+          <div
+            className={classnames('w-3/5', 'text-left', {
+              'text-teal-lighter': AWSTimestamp < now / 1000,
+            })}
+          >
             {`${title} - ${stage}`}
             <span className="text-xs ml-2">
-              {format(new Date(AWSTimestamp * 1000),
-                'MM-dd HH:mm')}
+              {format(new Date(AWSTimestamp * 1000), 'dd MMM HH:mm')}
             </span>
           </div>
           <div className="w-1/5">
@@ -46,12 +51,12 @@ const EventItem = ({
             <button
               type="button"
               className="text-red-light font-bold hover:bg-red-lightest p-3 rounded ml-3 event-item__voteBtn-down"
-                // disabled={lock}
-              onClick={(e) => {
+              disabled={lock}
+              onClick={async (e) => {
                 e.preventDefault();
                 setLock(true);
-                // db.votesTable.add({id, didVoteDown: true})
-                mutation({ input: { id, down: down - 1 } });
+                await db.votesTable.add({ id, didVoteDown: true });
+                await mutation({ input: { id, down: down - 1 } });
               }}
             >
               <FiThumbsDown />
@@ -65,7 +70,7 @@ const EventItem = ({
               { 'text-red-light': rating < 0 },
             )}
           >
-              Rating:
+            Rating:
             {' '}
             {rating}
           </div>
