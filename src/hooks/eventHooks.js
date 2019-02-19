@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 
 const cdmEvent = (id, db, setVote) => useEffect(() => {
   db.votesTable.get(id).then((vote) => {
-    setVote(vote);
+    if (vote) {
+      setVote(vote);
+    }
   });
 }, []);
 
