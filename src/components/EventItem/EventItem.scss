@@ -1,21 +1,27 @@
 .event-item {
   &__voteBtn {
     &-up {
-      &:disabled {
-        cursor: not-allowed;
+      &-active {
         svg {
           fill: #1F9D55;
         }
       }
     }
     &-down {
-      &:disabled {
-        cursor: not-allowed;
+      &-active {
         svg {
           fill: #FFBBCA;
         }
       }
     }
-
+    &-gray {
+      &:disabled {
+        cursor: not-allowed;
+        svg {
+          stroke: #606F7B;
+          fill: #B8C2CC;
+        }
+      }
+    }
   }
 }

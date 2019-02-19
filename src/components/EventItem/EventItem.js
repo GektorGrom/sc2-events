@@ -17,8 +17,13 @@ const EventItem = ({
   stage, title, up, down, id, AWSTimestamp, db,
 }) => {
   // declare state
-  const [lock, setLock] = useState(false);
+  const [lock, setLock] = useState({
+    didVoteUp: false,
+    didVoteDown: false,
+  });
   cdmEvent(id, db, setLock);
+  console.log(lock);
+  const { didVoteUp, didVoteDown } = lock;
   const rating = up + down;
   return (
     <Connect mutation={graphqlOperation(updateSc2Events)}>
@@ -37,26 +42,53 @@ const EventItem = ({
           <div className="w-1/5">
             <button
               type="button"
-              disabled={lock}
-              className="text-green-light font-bold hover:bg-green-lightest p-3 rounded event-item__voteBtn-up"
+              disabled={didVoteDown}
+              className={classnames(
+                'text-green-light',
+                'font-bold',
+                'hover:bg-green-lightest',
+                'p-3',
+                'rounded',
+                'event-item__voteBtn-up',
+                {
+                  'event-item__voteBtn-gray': didVoteDown,
+                },
+                {
+                  'event-item__voteBtn-up-active': didVoteUp,
+                },
+              )}
               onClick={async (e) => {
                 e.preventDefault();
-                setLock(true);
-                db.votesTable.add({ id, didVoteDown: true });
-                await mutation({ input: { id, up: up + 1 } });
+                setLock({ didVoteUp: !didVoteUp });
+                db.votesTable.put({ id, didVoteUp: !didVoteUp });
+                await mutation({ input: { id, up: didVoteUp ? up - 1 : up + 1 } });
               }}
             >
               <FiThumbsUp />
             </button>
             <button
               type="button"
-              className="text-red-light font-bold hover:bg-red-lightest p-3 rounded ml-3 event-item__voteBtn-down"
-              disabled={lock}
+              className={classnames(
+                'text-red-light',
+                'font-bold',
+                'hover:bg-red-lightest',
+                'p-3',
+                'rounded',
+                'ml-3',
+                'event-item__voteBtn-down',
+                {
+                  'event-item__voteBtn-gray': didVoteUp,
+                },
+                {
+                  'event-item__voteBtn-down-active': didVoteDown,
+                },
+              )}
+              disabled={didVoteUp}
               onClick={async (e) => {
                 e.preventDefault();
-                setLock(true);
-                await db.votesTable.add({ id, didVoteDown: true });
-                await mutation({ input: { id, down: down - 1 } });
+                setLock({ didVoteDown: !didVoteDown });
+                await db.votesTable.put({ id, didVoteDown: !didVoteDown });
+                await mutation({ input: { id, down: didVoteDown ? down + 1 : down - 1 } });
               }}
             >
               <FiThumbsDown />
