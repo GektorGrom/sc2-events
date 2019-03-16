@@ -31,6 +31,24 @@ export const listSc2Events = `query ListSc2Events(
       down
     }
     nextToken
+    scannedCount
+  }
+}
+`;
+export const listRangeEvents = `query ListRangeEvents($start: AWSTimestamp, $end: AWSTimestamp) {
+  listRangeEvents(start: $start, end: $end) {
+    items {
+      id
+      eventId
+      stage
+      title
+      Liquipedia
+      AWSTimestamp
+      up
+      down
+    }
+    nextToken
+    scannedCount
   }
 }
 `;

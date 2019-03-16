@@ -8,7 +8,7 @@ import {
   format, endOfDay, startOfDay, parse,
 } from 'date-fns';
 
-import { listSc2Events } from '../../graphql/queries';
+import { listRangeEvents } from '../../graphql/queries';
 import { onUpdateRate } from '../../graphql/subscriptions';
 import EventItem from '../EventItem/EventItem';
 import EventsNav from '../EventsNav/EventsNav';
@@ -23,19 +23,14 @@ const EventsList = ({ match }) => {
   return (
     <Fragment>
       <Connect
-        query={graphqlOperation(listSc2Events, {
-          limit: 1000,
-          filter: {
-            AWSTimestamp: {
-              ge: +format(startOfDay(currentDate), 't'),
-              lt: +format(endOfDay(currentDate), 't'),
-            },
-          },
+        query={graphqlOperation(listRangeEvents, {
+          start: +format(startOfDay(currentDate), 't'),
+          end: +format(endOfDay(currentDate), 't'),
         })}
         subscription={graphqlOperation(onUpdateRate)}
         onSubscriptionMsg={(prev, { onUpdateRate: sc2Event }) => Object.assign({}, prev, {
-          listSc2Events: {
-            items: prev.listSc2Events.items.map((el) => {
+          listRangeEvents: {
+            items: prev.listRangeEvents.items.map((el) => {
               if (el.id === sc2Event.id) {
                 return Object.assign({}, el, sc2Event);
               }
@@ -45,16 +40,13 @@ const EventsList = ({ match }) => {
         })
       }
       >
-        {({ data: { listSc2Events: sc2Events }, loading, error }) => {
-          console.log(sc2Events);
-          if (error) return <h3>Error</h3>;
-          if (loading || !sc2Events.items) return <h3>Loading...</h3>;
+        {({ data, loading, errors }) => {
+          if (errors.length > 0) return <h3>{JSON.stringify(errors)}</h3>;
+          if (loading) return <h3>Loading...</h3>;
+          const { listRangeEvents: sc2Events } = data;
           return sc2Events.items
             .sort((a, b) => a.AWSTimestamp - b.AWSTimestamp)
-            .map((event) => {
-              console.log(event);
-              return <EventItem db={db} key={event.id} {...event} />;
-            });
+            .map(event => <EventItem db={db} key={event.id} {...event} />);
         }}
       </Connect>
       <EventsNav currentDay={currentDay} />

@@ -16,6 +16,9 @@
     }
     &-gray {
       &:disabled {
+        &:hover {
+          background-color: transparent;
+        }
         cursor: not-allowed;
         svg {
           stroke: #606F7B;

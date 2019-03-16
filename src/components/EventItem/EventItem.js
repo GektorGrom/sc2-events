@@ -22,7 +22,6 @@ const EventItem = ({
     didVoteDown: false,
   });
   cdmEvent(id, db, setLock);
-  console.log(lock);
   const { didVoteUp, didVoteDown } = lock;
   const rating = up + down;
   return (
