@@ -12,6 +12,7 @@ import { listRangeEvents } from '../../graphql/queries';
 import { onUpdateRate } from '../../graphql/subscriptions';
 import EventItem from '../EventItem/EventItem';
 import EventsNav from '../EventsNav/EventsNav';
+import TimeCard from '../TimeCard/TimeCard';
 
 const EventsList = ({ match }) => {
   const { currentDay } = match.params;
@@ -22,6 +23,14 @@ const EventsList = ({ match }) => {
   });
   return (
     <Fragment>
+      <header className="App-header justify-center sm:justify-between">
+        <img
+          src="/images/logo/Starcraft_2_Icons_rep_512px.png"
+          className="App-logo hidden sm:block h-full"
+          alt="logo"
+        />
+        <TimeCard date={currentDate} />
+      </header>
       <Connect
         query={graphqlOperation(listRangeEvents, {
           start: +format(startOfDay(currentDate), 't'),

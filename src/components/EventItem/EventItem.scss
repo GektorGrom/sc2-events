@@ -1,9 +1,22 @@
 .event-item {
+  padding: 10px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
+  background-size: 200% auto;
+  display: block;
+  transition: 0.5s;
+
+  &__disabled {
+    background-image: linear-gradient(to right, #bdc3c7 0%, darken(#bdc3c7, 15%) 51%, #bdc3c7 100%);
+  }
+
+  &:hover { background-position: right center; }
   &__voteBtn {
     &-up {
       &-active {
         svg {
-          fill: #1F9D55;
+          fill: #51d88a;
         }
       }
     }

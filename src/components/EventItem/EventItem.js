@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 import { Connect } from 'aws-amplify-react';
 import { graphqlOperation } from 'aws-amplify';
-import classnames from 'classnames';
+import classNames from '@sindresorhus/class-names';
 import { format } from 'date-fns';
 
 import { updateSc2Events } from '../../graphql/mutations';
 
-import './EventItem.scss';
 import { cdmEvent } from '../../hooks/eventHooks';
+
+import './EventItem.scss';
 
 const now = new Date().getTime();
 
@@ -24,12 +25,16 @@ const EventItem = ({
   cdmEvent(id, db, setLock);
   const { didVoteUp, didVoteDown } = lock;
   const rating = up + down;
+  const isPast = AWSTimestamp < now / 1000;
   return (
     <Connect mutation={graphqlOperation(updateSc2Events)}>
       {({ mutation }) => (
-        <div className="flex flex-wrap mb-4 leading-loose event-item items-center">
+        <div className={classNames('text-xl flex flex-wrap mb-4 leading-loose event-item items-center', {
+          'event-item__disabled': isPast,
+        })}
+        >
           <div
-            className={classnames(
+            className={classNames(
               'text-xl',
               'lg:text-4xl',
               'w-full',
@@ -37,21 +42,24 @@ const EventItem = ({
               'text-left',
               'truncate',
               {
-                'text-teal-lighter': AWSTimestamp < now / 1000,
+                'text-grey-darker': isPast,
               },
             )}
           >
             {`${title} - ${stage}`}
-            <span className="text-sm ml-2">
-              {format(new Date(AWSTimestamp * 1000), 'dd MMM HH:mm')}
+            <span className="text-lg ml-4">
+              {format(new Date(AWSTimestamp * 1000), 'HH:mm')}
             </span>
           </div>
-          <div className="w-3/5 lg:w-1/5 text-left">
+          <div className={classNames('w-3/5 lg:w-1/5 text-right', {
+            invisible: isPast,
+          })}
+          >
             <button
               type="button"
               disabled={didVoteDown}
-              className={classnames(
-                'text-green-light',
+              className={classNames(
+                'text-green-dark',
                 'font-bold',
                 'hover:bg-green-lightest',
                 'p-3',
@@ -77,7 +85,7 @@ const EventItem = ({
             </button>
             <button
               type="button"
-              className={classnames(
+              className={classNames(
                 'text-red-light',
                 'font-bold',
                 'hover:bg-red-lightest',
@@ -106,12 +114,13 @@ const EventItem = ({
             </button>
           </div>
           <div
-            className={classnames(
+            className={classNames(
               'w-2/5',
               'lg:w-1/5',
-              'text-left',
-              { 'text-green-light': rating >= 0 },
-              { 'text-red-light': rating < 0 },
+              'text-right',
+              'text-2xl',
+              { 'text-green-dark': rating >= 0 },
+              { 'text-red-dark': rating < 0 },
             )}
           >
             Rating:
