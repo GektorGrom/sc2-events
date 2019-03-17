@@ -27,18 +27,26 @@ const EventItem = ({
   return (
     <Connect mutation={graphqlOperation(updateSc2Events)}>
       {({ mutation }) => (
-        <div className="flex mb-4 leading-loose event-item">
+        <div className="flex flex-wrap mb-4 leading-loose event-item items-center">
           <div
-            className={classnames('w-3/5', 'text-left', {
-              'text-teal-lighter': AWSTimestamp < now / 1000,
-            })}
+            className={classnames(
+              'text-xl',
+              'lg:text-4xl',
+              'w-full',
+              'lg:w-3/5',
+              'text-left',
+              'truncate',
+              {
+                'text-teal-lighter': AWSTimestamp < now / 1000,
+              },
+            )}
           >
             {`${title} - ${stage}`}
-            <span className="text-xs ml-2">
+            <span className="text-sm ml-2">
               {format(new Date(AWSTimestamp * 1000), 'dd MMM HH:mm')}
             </span>
           </div>
-          <div className="w-1/5">
+          <div className="w-3/5 lg:w-1/5 text-left">
             <button
               type="button"
               disabled={didVoteDown}
@@ -60,7 +68,9 @@ const EventItem = ({
                 e.preventDefault();
                 setLock({ didVoteUp: !didVoteUp });
                 db.votesTable.put({ id, didVoteUp: !didVoteUp });
-                await mutation({ input: { id, up: didVoteUp ? up - 1 : up + 1 } });
+                await mutation({
+                  input: { id, up: didVoteUp ? up - 1 : up + 1 },
+                });
               }}
             >
               <FiThumbsUp />
@@ -87,7 +97,9 @@ const EventItem = ({
                 e.preventDefault();
                 setLock({ didVoteDown: !didVoteDown });
                 await db.votesTable.put({ id, didVoteDown: !didVoteDown });
-                await mutation({ input: { id, down: didVoteDown ? down + 1 : down - 1 } });
+                await mutation({
+                  input: { id, down: didVoteDown ? down + 1 : down - 1 },
+                });
               }}
             >
               <FiThumbsDown />
@@ -95,7 +107,8 @@ const EventItem = ({
           </div>
           <div
             className={classnames(
-              'w-1/5',
+              'w-2/5',
+              'lg:w-1/5',
               'text-left',
               { 'text-green-light': rating >= 0 },
               { 'text-red-light': rating < 0 },

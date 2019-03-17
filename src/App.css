@@ -1,3 +1,7 @@
+html {
+  font-size: 100%
+}
+
 body {
   font-family: 'Encode Sans', sans-serif;
 }
@@ -17,8 +21,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
