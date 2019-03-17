@@ -6081,6 +6081,11 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
+keyboardist@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/keyboardist/-/keyboardist-1.2.1.tgz#ba070bbd3d1f469b5bb8f5106ab99d3ac0dfbaa7"
+  integrity sha512-vBeCmvxhGbYpDZFiZ2dTmH2SvYfsY8jWfC8GdkcRo3K/czAqKTkUes9iPg/h8rhiYf9Myl8XJQj67E2IhzJLIg==
+
 killable@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -8551,6 +8556,13 @@ react-is@^16.8.1:
   version "16.8.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.2.tgz#09891d324cad1cb0c1f2d91f70a71a4bee34df0f"
   integrity sha512-D+NxhSR2HUCjYky1q1DwpNUD44cDpUXzSmmFyC3ug1bClcU/iDNy0YNn1iwme28fn+NFhpA13IndOd42CrFb+Q==
+
+react-keyboardist@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-keyboardist/-/react-keyboardist-0.2.0.tgz#942a40d9e7ff052402a3bc1923b2aae73e8d9bfd"
+  integrity sha512-oKkNo+ovvK9Gt1RxE4T9cMW//JX1b81+Vj0/dXb9YNrS2BDR6OvWm8Zp6OnvGsB+bkJ4h2sY/MlIU7VwU8i5Bg==
+  dependencies:
+    keyboardist "^1.2.1"
 
 react-router-dom@^4.4.0:
   version "4.4.0"

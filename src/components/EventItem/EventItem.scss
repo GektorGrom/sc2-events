@@ -6,6 +6,8 @@
   background-size: 200% auto;
   display: block;
   transition: 0.5s;
+  text-decoration: none;
+  color: currentColor;
 
   &__disabled {
     background-image: linear-gradient(to right, #bdc3c7 0%, darken(#bdc3c7, 15%) 51%, #bdc3c7 100%);

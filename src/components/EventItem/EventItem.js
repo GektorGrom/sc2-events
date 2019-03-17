@@ -15,7 +15,7 @@ import './EventItem.scss';
 const now = new Date().getTime();
 
 const EventItem = ({
-  stage, title, up, down, id, AWSTimestamp, db,
+  stage, title, up, down, id, AWSTimestamp, db, Liquipedia,
 }) => {
   // declare state
   const [lock, setLock] = useState({
@@ -29,9 +29,13 @@ const EventItem = ({
   return (
     <Connect mutation={graphqlOperation(updateSc2Events)}>
       {({ mutation }) => (
-        <div className={classNames('text-xl flex flex-wrap mb-4 leading-loose event-item items-center', {
-          'event-item__disabled': isPast,
-        })}
+        <a
+          href={Liquipedia}
+          target="_blank"
+          rel="noreferrer noopener"
+          className={classNames('text-xl flex flex-wrap mb-4 leading-loose event-item items-center', {
+            'event-item__disabled': isPast,
+          })}
         >
           <div
             className={classNames(
@@ -127,7 +131,7 @@ const EventItem = ({
             {' '}
             {rating}
           </div>
-        </div>
+        </a>
       )}
     </Connect>
   );
@@ -138,7 +142,7 @@ EventItem.propTypes = {
   // eventId: PropTypes.number.isRequired,
   stage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  // Liquipedia: PropTypes.string,
+  Liquipedia: PropTypes.string,
   up: PropTypes.number,
   down: PropTypes.number,
   AWSTimestamp: PropTypes.number.isRequired,
@@ -148,7 +152,7 @@ EventItem.propTypes = {
 EventItem.defaultProps = {
   up: 0,
   down: 0,
-  // Liquipedia: null,
+  Liquipedia: null,
 };
 
 export default EventItem;

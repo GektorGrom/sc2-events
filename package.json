@@ -13,6 +13,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-icons": "^3.5.0",
+    "react-keyboardist": "^0.2.0",
     "react-router-dom": "^4.4.0",
     "react-router-prop-types": "^1.0.4",
     "react-scripts": "2.1.8"

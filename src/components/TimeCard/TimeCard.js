@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import './TimeCard.scss';
 
 const TimeCard = ({ date }) => (
-  <section className="time-card" id="today">
+  <section className="time-card text-xs sm:text-sm" id="today">
     <div className="time-card__day">{format(date, 'EEEE')}</div>
     <div className="time-card__date">{format(date, 'dd')}</div>
     <div className="time-card__month">{format(date, 'MMMM')}</div>

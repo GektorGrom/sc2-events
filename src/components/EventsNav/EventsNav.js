@@ -4,20 +4,21 @@ import { format, addDays, parse } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
+import './EventsNav.scss';
+
 const EventsNav = ({ currentDay }) => {
   const currentDate = currentDay ? parse(currentDay, 'yyyy-MM-dd', new Date()) : new Date();
-  console.log(currentDate);
   const prvDate = addDays(currentDate, -1);
   const nextDate = addDays(currentDate, 1);
   return (
-    <div className="flex">
+    <div className="flex font-black text-4xl events-nav">
       <div className="w-1/2">
-        <Link to={`/${format(prvDate, 'yyyy-MM-dd')}`} className="text-white">
+        <Link to={`/${format(prvDate, 'yyyy-MM-dd')}`} className="text-white block text-left">
           <IoIosArrowBack />
         </Link>
       </div>
       <div className="w-1/2">
-        <Link to={`/${format(nextDate, 'yyyy-MM-dd')}`} className="text-white">
+        <Link to={`/${format(nextDate, 'yyyy-MM-dd')}`} className="text-white block text-right">
           <IoIosArrowForward />
         </Link>
       </div>
