@@ -82,10 +82,7 @@
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/sc2eventswebsite-20190210151322-deployment/amplify-cfn-templates/hosting/template.json",
-				"Parameters": {
-					"bucketName": "sc2eventswebsite-20190210211424-hostingbucket",
-					"env": "NONE"
-				}
+				"Parameters": {}
 			}
 		}
 	},

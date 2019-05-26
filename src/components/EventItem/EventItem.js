@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 import { updateSc2Events } from '../../graphql/mutations';
 
-import { cdmEvent } from '../../hooks/eventHooks';
+import { useCdmEvent } from '../../hooks/eventHooks';
 
 import './EventItem.scss';
 
@@ -22,7 +22,7 @@ const EventItem = ({
     didVoteUp: false,
     didVoteDown: false,
   });
-  cdmEvent(id, db, setLock);
+  useCdmEvent(id, db, setLock);
   const { didVoteUp, didVoteDown } = lock;
   const rating = up + down;
   const isPast = AWSTimestamp < now / 1000;
@@ -68,6 +68,9 @@ const EventItem = ({
                 'hover:bg-green-lightest',
                 'p-3',
                 'rounded',
+                'bg-transparent',
+                'border-transparent',
+                'text-2xl',
                 'event-item__voteBtn-up',
                 {
                   'event-item__voteBtn-gray': didVoteDown,
@@ -96,6 +99,9 @@ const EventItem = ({
                 'p-3',
                 'rounded',
                 'ml-3',
+                'bg-transparent',
+                'border-transparent',
+                'text-2xl',
                 'event-item__voteBtn-down',
                 {
                   'event-item__voteBtn-gray': didVoteUp,

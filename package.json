@@ -14,9 +14,9 @@
     "react-dom": "^16.8.4",
     "react-icons": "^3.5.0",
     "react-keyboardist": "^0.2.0",
-    "react-router-dom": "^4.4.0",
+    "react-router-dom": "^5.0.0",
     "react-router-prop-types": "^1.0.4",
-    "react-scripts": "2.1.8"
+    "react-scripts": "3.0.1"
   },
   "scripts": {
     "tailwind:css": "tailwind build src/styles/tailwind.src.css -c  tailwind.js -o src/styles/tailwind.css",
@@ -38,6 +38,6 @@
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-jest": "^22.4.1",
-    "tailwindcss": "^0.7.4"
+    "tailwindcss": "^1.0.1"
   }
 }
