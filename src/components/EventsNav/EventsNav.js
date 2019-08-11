@@ -11,13 +11,13 @@ const EventsNav = ({ currentDay }) => {
   const prvDate = addDays(currentDate, -1);
   const nextDate = addDays(currentDate, 1);
   return (
-    <div className="flex font-black text-4xl events-nav">
-      <div className="w-1/2">
+    <div className="flex font-black text-4xl events-nav justify-between">
+      <div className="">
         <Link to={`/${format(prvDate, 'yyyy-MM-dd')}`} className="text-white block text-left">
           <IoIosArrowBack />
         </Link>
       </div>
-      <div className="w-1/2">
+      <div className="">
         <Link to={`/${format(nextDate, 'yyyy-MM-dd')}`} className="text-white block text-right">
           <IoIosArrowForward />
         </Link>

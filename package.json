@@ -4,19 +4,22 @@
   "private": true,
   "dependencies": {
     "@sindresorhus/class-names": "^1.0.0",
-    "aws-amplify": "^1.1.22",
-    "aws-amplify-react": "^2.3.2",
+    "autoprefixer": "^9.6.1",
+    "aws-amplify": "^1.1.36",
+    "aws-amplify-react": "^2.3.12",
     "date-fns": "^2.0.0-alpha.27",
     "dexie": "^2.0.4",
     "node-sass": "^4.11.0",
+    "postcss-cli": "^6.1.3",
     "prop-types": "^15.7.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-icons": "^3.5.0",
     "react-keyboardist": "^0.2.0",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "react-router-prop-types": "^1.0.4",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.1.0",
+    "tailwindcss": "^1.1.1"
   },
   "scripts": {
     "tailwind:css": "tailwind build src/styles/tailwind.src.css -c  tailwind.js -o src/styles/tailwind.css",
@@ -36,8 +39,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-jest": "^22.4.1",
-    "tailwindcss": "^1.0.1"
+    "eslint-config-airbnb": "^18.0.0",
+    "eslint-plugin-jest": "^22.15.0"
   }
 }

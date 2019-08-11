@@ -51,11 +51,8 @@ const EventItem = ({
             )}
           >
             {`${title} - ${stage}`}
-            <span className="text-lg ml-4">
-              {format(new Date(AWSTimestamp * 1000), 'HH:mm')}
-            </span>
           </div>
-          <div className={classNames('w-3/5 lg:w-1/5 text-right', {
+          <div className={classNames('self-end lg:self-center w-3/5 lg:w-1/5 text-left lg:text-right', {
             invisible: isPast,
           })}
           >
@@ -70,7 +67,8 @@ const EventItem = ({
                 'rounded',
                 'bg-transparent',
                 'border-transparent',
-                'text-2xl',
+                'text-4xl',
+                'lg:text-2xl',
                 'event-item__voteBtn-up',
                 {
                   'event-item__voteBtn-gray': didVoteDown,
@@ -101,7 +99,8 @@ const EventItem = ({
                 'ml-3',
                 'bg-transparent',
                 'border-transparent',
-                'text-2xl',
+                'text-4xl',
+                'lg:text-2xl',
                 'event-item__voteBtn-down',
                 {
                   'event-item__voteBtn-gray': didVoteUp,
@@ -133,9 +132,13 @@ const EventItem = ({
               { 'text-red-dark': rating < 0 },
             )}
           >
-            Rating:
-            {' '}
-            {rating}
+            <span className="text-lg ml-4">
+              {format(new Date(AWSTimestamp * 1000), 'h:mm a')}
+            </span>
+            <div>
+              {`Rating: ${rating}`}
+            </div>
+
           </div>
         </a>
       )}

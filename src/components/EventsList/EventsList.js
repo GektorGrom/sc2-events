@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { Connect } from 'aws-amplify-react';
 import { graphqlOperation } from 'aws-amplify';
@@ -45,7 +45,7 @@ class EventsList extends Component {
       votesTable: '++id, didVoteUp, didVoteDown',
     });
     return (
-      <Fragment>
+      <>
         <Keyboardist bindings={{
           Left: this.left,
           Right: this.right,
@@ -65,20 +65,18 @@ class EventsList extends Component {
             end: +format(endOfDay(currentDate), 't'),
           })}
           subscription={graphqlOperation(onUpdateRate)}
-          onSubscriptionMsg={(prev, { onUpdateRate: sc2Event }) => Object.assign(
-            {},
-            prev,
-            {
-              listRangeEvents: {
-                items: prev.listRangeEvents.items.map((el) => {
-                  if (el.id === sc2Event.id) {
-                    return Object.assign({}, el, sc2Event);
-                  }
-                  return el;
-                }),
-              },
+          onSubscriptionMsg={(prev, { onUpdateRate: sc2Event }) => ({
+
+            ...prev,
+            listRangeEvents: {
+              items: prev.listRangeEvents.items.map((el) => {
+                if (el.id === sc2Event.id) {
+                  return { ...el, ...sc2Event };
+                }
+                return el;
+              }),
             },
-          )}
+          })}
         >
           {({ data, loading, errors }) => {
             if (errors.length > 0) return <h3>{JSON.stringify(errors)}</h3>;
@@ -86,11 +84,12 @@ class EventsList extends Component {
             const { listRangeEvents: sc2Events } = data;
             return sc2Events.items
               .sort((a, b) => a.AWSTimestamp - b.AWSTimestamp)
-              .map(event => <EventItem db={db} key={event.id} {...event} />);
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              .map((event) => <EventItem db={db} key={event.id} {...event} />);
           }}
         </Connect>
         <EventsNav currentDay={currentDay} />
-      </Fragment>
+      </>
     );
   }
 }
