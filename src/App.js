@@ -6,7 +6,6 @@ import './App.css';
 
 import awsmobile from './aws-exports';
 import EventsList from './components/EventsList/EventsList';
-import './styles/tailwind.css';
 
 Amplify.configure(awsmobile);
 
