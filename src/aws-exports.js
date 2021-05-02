@@ -5,7 +5,7 @@ const awsmobile = {
     "aws_appsync_graphqlEndpoint": "https://yryxqaqwuvalphwuesf2mx555u.appsync-api.us-west-2.amazonaws.com/graphql",
     "aws_appsync_region": "us-west-2",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-a77uath5y5drldytydfqex4asq",
+    "aws_appsync_apiKey": "da2-dhunhehqhvaubak3icbvarpfpi",
     "aws_content_delivery_bucket": "sc2eventswebsite-20190210211424-hostingbucket",
     "aws_content_delivery_bucket_region": "us-west-2",
     "aws_content_delivery_url": "http://sc2eventswebsite-20190210211424-hostingbucket.s3-website-us-west-2.amazonaws.com"
