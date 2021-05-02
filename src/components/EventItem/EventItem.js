@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 import { Connect } from 'aws-amplify-react';
 import { graphqlOperation } from 'aws-amplify';
-import classNames from '@sindresorhus/class-names';
+import classNames from 'clsx';
 import { format } from 'date-fns';
 
 import { updateSc2Events } from '../../graphql/mutations';
