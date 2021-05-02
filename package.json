@@ -3,23 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@sindresorhus/class-names": "^1.0.0",
-    "autoprefixer": "^9.8.6",
-    "aws-amplify": "^3.0.23",
-    "aws-amplify-react": "^4.1.22",
-    "date-fns": "^2.15.0",
-    "dexie": "^2.0.4",
-    "node-sass": "^4.14.1",
-    "postcss-cli": "^7.1.1",
+    "autoprefixer": "^10.2.5",
+    "aws-amplify": "^3.3.27",
+    "aws-amplify-react": "^4.2.31",
+    "clsx": "^1.1.1",
+    "date-fns": "^2.21.1",
+    "dexie": "^3.0.3",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.2.13",
+    "postcss-cli": "^8.3.1",
+    "postcss-loader": "^5.2.0",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-icons": "^3.10.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-keyboardist": "^0.2.1",
     "react-router-dom": "^5.2.0",
-    "react-router-prop-types": "^1.0.4",
-    "react-scripts": "^4.0.0-next.77",
-    "tailwindcss": "^1.6.2"
+    "react-router-prop-types": "^1.0.5",
+    "react-scripts": "^4.0.3",
+    "tailwindcss": "^2.1.2"
   },
   "scripts": {
     "tailwind:css": "tailwindcss build src/styles/tailwind.src.css -o src/tailwind.css",
@@ -27,7 +29,8 @@
     "build": "NODE_ENV=production yarn tailwind:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "analyze": "react-scripts build --stats && webpack-bundle-analyzer build/bundle-stats.json -m static -r build/bundle-stats.html -O"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,7 +42,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-jest": "^23.20.0"
+    "@babel/helper-builder-react-jsx": "^7.12.13",
+    "@babel/helper-builder-react-jsx-experimental": "^7.12.11",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-jest": "^24.3.6"
   }
 }
